@@ -1,16 +1,15 @@
 import sys
 import random
 
-from PyQt5 import uic
-from PyQt5.QtCore import QPoint, Qt
-from PyQt5.QtGui import QPolygon, QColor, QPainter
+from untitled import Ui_Form
+from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('untitled.ui', self)  # Загружаем дизайн
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.run)
         self.ok = False
 
@@ -29,7 +28,7 @@ class MyWidget(QMainWindow):
     def draw_flag(self):
         # Задаем кисть
         size = random.randint(0, 250)
-        self.qp.setBrush(QColor('yellow'))
+        self.qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
         self.qp.drawEllipse(130, 200, size, size)
         # Рисуем прямоугольник заданной кистью
 
